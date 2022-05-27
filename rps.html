@@ -1,0 +1,105 @@
+<script>
+	// Saung 5/27/2022 New 2L creates a function to capitalize first char to upper case
+	function capitalizeFirstLetter(s) {
+		return s.charAt(0).toUpperCase() + s.slice(1);
+	}
+	
+	
+	// Saung 5/27/2022 New 4L Creates a function for user input for Spot 
+	function inputSpot() {
+		var spot = prompt("What is your spot (Rock, Paper or Scissors):");
+		console.log("What is your spot (Rock, Paper or Scissors): " + capitalizeFirstLetter(spot));
+		spot = spot.trim().toLowerCase();
+		return spot;
+	} 
+// Saung 5/27/2022 New 2L creates variables for var and const 
+	var userScore = 0;
+	var computerScore = 0;
+	var choice = 0;
+	const spots = ["rock", "paper", "scissors"];
+		
+		// Saung 5/27/2022 New 2L Ask for user input name
+	var name = prompt("What is your Name:");
+	console.log("What is your Name: " + name);
+
+	var spot = inputSpot();
+	
+// Saung 5/27/2022 New 2L while loop based on the user input for number of times.
+	while (true) {
+		var times = prompt("How many times do you want to compete:");
+		console.log("How many times do you want to compete: " + times);
+		console.log("\n");
+		if (Number.isInteger(parseInt(times))) {
+			break;
+		} else {
+			console.log("The entered value must be an integer. Try again");
+		}
+	}
+
+	var i = 0;
+	// Saung 5/27/2022 New 2L 
+	while (i < times) {
+		let randomNumber = Math.floor(Math.random() * 3) + 1;
+		let computerSpot = spots[randomNumber - 1];
+		let outcome = 0;
+		// Saung 5/27/2022 New 15L creates different amount of outcome for user through if loop. Gives user scores depending on the outcome result
+		if (spot === "rock") {
+			if (computerSpot === "paper") {
+				computerScore++;
+				outcome = -1;
+			} else if (computerSpot === "scissors") {
+				userScore++;
+				outcome = 1;
+			}
+		} else if (spot === "paper") {
+			if (computerSpot === "scissors") {
+				computerScore++;
+				outcome = -1;
+			} else if (computerSpot === "rock") {
+				userScore++;
+				outcome = 1;
+			}
+		} else if (spot === "scissors") {
+			if (computerSpot === "rock") {
+				computerScore++;
+				outcome = -1;
+			} else if (computerSpot === "paper") {
+				userScore++;
+				outcome = 1;
+			}
+		} else {// Saung 5/27/2022 Outputs score on the console log of google
+			console.log("Wrong spot. Try again");
+			console.log("\n");
+			spot = inputSpot();
+			continue;
+		}
+// Saung 5/27/2022 New 2L creates a function to capitalize first char to upper case
+		let output = "You Chose " + capitalizeFirstLetter(spot) 
+			+ " and Computer Chose " + capitalizeFirstLetter(computerSpot) + ", ";
+		if (outcome == -1) {
+			output += "so computer got a point!";
+		} else if (outcome == 1) {
+			output += "so you got a point!";
+		} else {
+			output += "so no points given!";
+		}
+		// Saung 5/27/2022 2L Outputs score on the console log of google
+		console.log(output);
+		console.log("\n");
+		
+		i++;
+		
+		if (i < times) {
+			spot = inputSpot();
+		}
+	}
+// Saung 5/27/2022 5L  Outputs score on the console log of google
+	var score = userScore - computerScore; 
+	if (score < 0) {
+		console.log("End: You Lose!");
+	} else if (score > 0) {
+		console.log("End: You Win!");
+	} else {
+		console.log("End: Tie!");
+	}
+</script>
